@@ -70,7 +70,7 @@ GitHub: [https://github.com/tetsushi-k/legacy-php-payment](https://github.com/te
 | 構成 | 画面ごと PHP+HTML | フロントコントローラ + テンプレート |
 | 権限 | if 文散在 | `RbacPolicy` |
 | 決済 | 単純 UPDATE | TX + FOR UPDATE + 監査ログ |
-| テスト | なし | characterization test 5件 |
+| テスト | なし | characterization test 8件 |
 | 静的解析 | なし | PHPStan L6 + Rector |
 
 ---

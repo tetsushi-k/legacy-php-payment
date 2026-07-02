@@ -9,7 +9,7 @@
 | 構成 | 画面ごとに PHP+HTML | フロントコントローラ + テンプレート |
 | 権限 | if 文散在 | RbacPolicy |
 | 決済 | 単純 UPDATE | トランザクション + FOR UPDATE + 監査ログ |
-| テスト | なし | characterization test |
+| テスト | なし | characterization test 8件 |
 | 静的解析 | なし | PHPStan L6 + Rector |
 
 ## 追加した泥臭い要件
@@ -36,3 +36,4 @@
 | Reverse Engineering | コード読解・仕様ドラフト | 仕様承認、アンチパターン分類 |
 | Construction | ボイラープレート生成 | 決済トランザクション設計、RBAC 方針 |
 | テスト | テスト雛形 | 期待挙動の定義・承認 |
+| Build and Test + ジャーナル | CI 雛形・upgrade-journal 遡及・テスト 3 件追加 | Proxy Approval を audit.md に記録（ローカル代理実行セッション） |
