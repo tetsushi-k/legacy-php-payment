@@ -1,5 +1,7 @@
 # legacy-php-payment
 
+GitHub: [https://github.com/tetsushi-k/legacy-php-payment](https://github.com/tetsushi-k/legacy-php-payment)
+
 `laravel-payment-api` の **レガシー前身** を再現し、AI-DLC の Reverse Engineering で仕様を復元したうえで PHP 8.3 に近代化するポートフォリオです。
 
 > **主役の成果物は `aidlc-docs/`** — 面談ではコードより先に設計判断の証跡を画面共有してください。
