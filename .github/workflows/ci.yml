@@ -13,7 +13,7 @@ jobs:
       - uses: actions/checkout@v4
 
       - name: Build and start services
-        run: docker compose up -d --build --wait
+        run: docker compose up -d --build --wait db
 
       - name: Install dependencies
         run: docker compose run --rm cli composer install --no-interaction
