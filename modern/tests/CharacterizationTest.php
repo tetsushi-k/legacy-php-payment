@@ -86,4 +86,30 @@ final class CharacterizationTest extends TestCase
 
         $this->payment->pay(4, ['id' => 1, 'email' => 'test@example.com', 'role' => 'user']);
     }
+
+    public function test_payment_rejects_already_paid_order(): void
+    {
+        $this->expectException(\RuntimeException::class);
+        $this->expectExceptionMessage('この注文は既に処理済みです');
+
+        $this->payment->pay(2, ['id' => 1, 'email' => 'test@example.com', 'role' => 'user']);
+    }
+
+    public function test_payment_rejects_missing_order(): void
+    {
+        $this->expectException(\RuntimeException::class);
+        $this->expectExceptionMessage('注文が見つかりません');
+
+        $this->payment->pay(99999, ['id' => 1, 'email' => 'test@example.com', 'role' => 'user']);
+    }
+
+    public function test_admin_can_pay_others_pending_order(): void
+    {
+        $this->pdo->exec("UPDATE orders SET status = 'pending' WHERE id = 4");
+
+        $this->payment->pay(4, ['id' => 2, 'email' => 'admin@example.com', 'role' => 'admin']);
+
+        $order = $this->orders->findById(4);
+        $this->assertSame('paid', $order['status']);
+    }
 }

@@ -4,7 +4,7 @@ GitHub: [https://github.com/tetsushi-k/legacy-php-payment](https://github.com/te
 
 `laravel-payment-api` の **レガシー前身** を再現し、AI-DLC の Reverse Engineering で仕様を復元したうえで PHP 8.3 に近代化するポートフォリオです。
 
-> **主役の成果物は `aidlc-docs/`** — 面談ではコードより先に設計判断の証跡を画面共有してください。
+> 設計判断の詳細は [`aidlc-docs/`](aidlc-docs/README.md) を参照。
 
 ---
 
@@ -70,7 +70,7 @@ GitHub: [https://github.com/tetsushi-k/legacy-php-payment](https://github.com/te
 | 構成 | 画面ごと PHP+HTML | フロントコントローラ + テンプレート |
 | 権限 | if 文散在 | `RbacPolicy` |
 | 決済 | 単純 UPDATE | TX + FOR UPDATE + 監査ログ |
-| テスト | なし | characterization test 5件 |
+| テスト | なし | characterization test 8件 |
 | 静的解析 | なし | PHPStan L6 + Rector |
 
 ---
@@ -93,16 +93,19 @@ make phpstan  # 静的解析
 
 ---
 
-## ⑥ 面談版（1分）— トークI
+## ⑥ 動作確認
 
-1. **何を作ったか（15秒）**  
-   `laravel-payment-api` の前身を想定したレガシー PHP 決済アプリを、AI-DLC の Reverse Engineering で仕様復元してから PHP 8.3 に近代化しました。
+```bash
+make test      # characterization test 8件
+make phpstan   # 静的解析
+```
 
-2. **設計上の工夫（30秒）**  
-   レガシー版は mysqli + 権限チェック散在など意図的アンチパターンを残し、近代化版では PDO・`RbacPolicy`・`AuditLogger` に集約しました。characterization test で移行前の挙動を固定してからリファクタしています。
-
-3. **実務との接続（15秒）**  
-   現職では CodeIgniter 2 のレガシー EC を8年担当してきました。仕様がドキュメント化されていないコードから、AI-DLC で仕様を復元してから安全に触る流れは現場の刷新案件にそのまま応用できます。
+| 確認項目 | 手順 |
+|---|---|
+| レガシー版ログイン | http://localhost:8080/login.php で `test@example.com` / `password123` |
+| 近代化版ログイン | http://localhost:8081/login.php で同上 |
+| 決済 | いずれかで pending 注文の「決済」→ `paid` に変わること |
+| 権限 | user は自分の注文のみ、admin は全件表示されること |
 
 ---
 
@@ -112,7 +115,7 @@ make phpstan  # 静的解析
 |---|---|
 | [`laravel-payment-api`](../laravel-payment-api) | 近代化後の Laravel + React SPA 版 |
 | [`laravel-batch`](../laravel-batch) | 同一 EC ドメインのバッチ処理 |
-| [`aidlc-docs/README.md`](aidlc-docs/README.md) | 面談での画面共有導線 |
+| [`aidlc-docs/README.md`](aidlc-docs/README.md) | AI-DLC 設計判断の証跡 |
 | [`docs/CLOUD_AGENTS_SETUP.md`](docs/CLOUD_AGENTS_SETUP.md) | Cloud Agents 設定手順 |
 
 ---

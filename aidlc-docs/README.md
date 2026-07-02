@@ -8,7 +8,9 @@ AI-DLC（AI-Driven Development Lifecycle）の設計判断証跡です。
 1. [reverse-engineering/spec-restored.md](inception/reverse-engineering/spec-restored.md) — レガシーコードから復元した仕様
 2. [reverse-engineering/anti-patterns.md](inception/reverse-engineering/anti-patterns.md) — 意図的アンチパターン一覧
 3. [inception/migration-plan.md](inception/migration-plan.md) — PHP 5→8 移行計画
-4. [construction/modernization-summary.md](construction/modernization-summary.md) — Before/After まとめ
+4. [construction/upgrade-journal/README.md](construction/upgrade-journal/README.md) — 検証・改修・躓き（面談 Q&A 用）
+5. [construction/modernization-summary.md](construction/modernization-summary.md) — Before/After まとめ
+6. [construction/build-and-test/build-and-test-summary.md](construction/build-and-test/build-and-test-summary.md) — ビルド・テスト結果
 
 ## 関連ポートフォリオ
 

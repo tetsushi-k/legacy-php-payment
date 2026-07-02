@@ -46,18 +46,20 @@ Cloud Agent がリポを clone した際、この設定に従って環境を構�
 
 ## 6. Cloud Agent への指示例
 
+初回スキャフォールド用の短い例:
+
 ```
 legacy-php-payment リポジトリで、EC ドメインのレガシー PHP 決済アプリの
 Docker 骨格を整備してください。
-
-- legacy/ に PHP 7.4 + mysqli のレガシーコード（既存を尊重）
-- modern/ に PHP 8.3 の近代化版
-- docker-compose.yml で legacy:8080 / modern:8081 / MySQL
-- make setup で DB 初期化とシードが完結するように
-
-設計判断は aidlc-docs/ を参照。Never Vibe Code 原則に従い、
-不明点はドキュメントに質問を残してから実装してください。
+...
 ```
+
+**Build and Test / ジャーナル補強** は [CLOUD_AGENT_PROMPT.md](CLOUD_AGENT_PROMPT.md) のプロンプト全文を Cloud Agents にコピペしてください（AI-DLC 代理実行モード）。
+
+| フェーズ | プロンプト |
+|---|---|
+| 初回スキャフォールド | 下記短い例 |
+| 証跡整備 + 補強 | [CLOUD_AGENT_PROMPT.md](CLOUD_AGENT_PROMPT.md) |
 
 ## 7. 課金の目安
 
