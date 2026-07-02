@@ -1,0 +1,32 @@
+---
+description: legacy-php-payment レガシー近代化プロジェクトのコンテキスト
+alwaysApply: true
+---
+
+# legacy-php-payment プロジェクトルール
+
+## 位置づけ
+
+- `laravel-payment-api` の **レガシー前身**（案A・同一 EC ドメイン）
+- Before: `legacy/`（PHP 5.6 時代のアンチパターンを PHP 7.4 で再現）
+- After: `modern/`（PHP 8.3 + PDO + RBAC + 監査ログ）
+
+## 守ること
+
+1. **主役は `aidlc-docs/`** — コードより設計判断の証跡を残す
+2. **Never Vibe Code** — 設計ドキュメント経由で修正する
+3. **legacy/ は意図的アンチパターン** — 近代化前の断面として保持（削除しない）
+4. **characterization test** — 近代化前の挙動をテストで固定してからリファクタ
+5. **面談で語れる粒度** — README に Before/After と設計理由を書く
+
+## ドメイン
+
+- ユーザー: email / password / role（admin | user）
+- 注文: user_id / amount（円）/ status（pending | paid | failed）
+- 決済: モック（Stripe 連携なし。`pay.php` で status を paid に更新）
+- 監査ログ: 近代化版のみ（`audit_logs` テーブル）
+
+## テストユーザー
+
+- `test@example.com` / `password123`（user）
+- `admin@example.com` / `password123`（admin）

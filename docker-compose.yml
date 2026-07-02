@@ -1,0 +1,88 @@
+services:
+  db:
+    image: mysql:8.0
+    container_name: legacy_payment_db
+    environment:
+      MYSQL_ROOT_PASSWORD: root_password
+      MYSQL_DATABASE: legacy_payment
+      MYSQL_USER: legacy_user
+      MYSQL_PASSWORD: legacy_password
+    ports:
+      - "3307:3306"
+    volumes:
+      - db_data:/var/lib/mysql
+      - ./docker/mysql/init.sql:/docker-entrypoint-initdb.d/init.sql
+    networks:
+      - legacy_network
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  legacy:
+    build:
+      context: .
+      dockerfile: docker/legacy-php/Dockerfile
+    container_name: legacy_payment_legacy
+    ports:
+      - "8080:80"
+    volumes:
+      - ./legacy:/var/www/html
+    environment:
+      DB_HOST: db
+      DB_NAME: legacy_payment
+      DB_USER: legacy_user
+      DB_PASS: legacy_password
+    networks:
+      - legacy_network
+    depends_on:
+      db:
+        condition: service_healthy
+
+  modern:
+    build:
+      context: .
+      dockerfile: docker/modern-php/Dockerfile
+    container_name: legacy_payment_modern
+    ports:
+      - "8081:80"
+    volumes:
+      - ./modern:/var/www/html
+      - ./vendor:/var/www/vendor
+    environment:
+      DB_HOST: db
+      DB_NAME: legacy_payment
+      DB_USER: legacy_user
+      DB_PASS: legacy_password
+    networks:
+      - legacy_network
+    depends_on:
+      db:
+        condition: service_healthy
+
+  cli:
+    build:
+      context: .
+      dockerfile: docker/cli/Dockerfile
+    container_name: legacy_payment_cli
+    volumes:
+      - .:/app
+    environment:
+      DB_HOST: db
+      DB_NAME: legacy_payment
+      DB_USER: legacy_user
+      DB_PASS: legacy_password
+    networks:
+      - legacy_network
+    depends_on:
+      db:
+        condition: service_healthy
+
+networks:
+  legacy_network:
+    driver: bridge
+
+volumes:
+  db_data:
+    driver: local

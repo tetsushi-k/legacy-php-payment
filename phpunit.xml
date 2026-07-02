@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<phpunit xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:noNamespaceSchemaLocation="vendor/phpunit/phpunit/phpunit.xsd"
+         bootstrap="vendor/autoload.php"
+         colors="true">
+    <testsuites>
+        <testsuite name="Characterization">
+            <directory>modern/tests</directory>
+        </testsuite>
+    </testsuites>
+    <php>
+        <env name="DB_HOST" value="db"/>
+        <env name="DB_NAME" value="legacy_payment"/>
+        <env name="DB_USER" value="legacy_user"/>
+        <env name="DB_PASS" value="legacy_password"/>
+    </php>
+</phpunit>

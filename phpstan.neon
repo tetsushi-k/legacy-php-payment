@@ -1,0 +1,7 @@
+parameters:
+    level: 6
+    paths:
+        - modern/src
+        - modern/public/index.php
+    excludePaths:
+        - legacy

@@ -1,0 +1,10 @@
+{
+  "install": "composer install --no-interaction && docker compose build",
+  "start": "make setup",
+  "terminals": [
+    {
+      "name": "Docker",
+      "command": "docker compose up"
+    }
+  ]
+}
