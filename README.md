@@ -2,7 +2,7 @@
 
 GitHub: [https://github.com/tetsushi-k/legacy-php-payment](https://github.com/tetsushi-k/legacy-php-payment)
 
-`laravel-payment-api` の **レガシー前身** を再現し、AI-DLC の Reverse Engineering で仕様を復元したうえで PHP 8.3 に近代化するポートフォリオです。
+[laravel-payment-api](https://github.com/tetsushi-k/laravel-payment-api) の **レガシー前身** を再現し、AI-DLC の Reverse Engineering で仕様を復元したうえで PHP 8.3 に近代化するポートフォリオです（プロフィールピン外し。決済系の物語は laravel-payment-api から辿れます）。
 
 > 設計判断の詳細は [`aidlc-docs/`](aidlc-docs/README.md) を参照。
 
@@ -16,7 +16,7 @@ GitHub: [https://github.com/tetsushi-k/legacy-php-payment](https://github.com/te
 | **After** | `modern/` | PHP 8.3 + PDO + PSR-4 + RBAC + 監査ログ |
 | **プロセス** | `aidlc-docs/` | AI-DLC Reverse Engineering → Inception → Construction |
 
-前作 [`laravel-payment-api`](../laravel-payment-api) との物語接続:
+前作 [laravel-payment-api](https://github.com/tetsushi-k/laravel-payment-api) との物語接続:
 - 前作 = Brownfield で React SPA 化（新フロント追加）
 - 本作 = 既存ロジックの言語バージョン移行・近代化（Reverse Engineering が主役）
 
@@ -113,8 +113,8 @@ make phpstan   # 静的解析
 
 | リポジトリ | 関係 |
 |---|---|
-| [`laravel-payment-api`](../laravel-payment-api) | 近代化後の Laravel + React SPA 版 |
-| [`laravel-batch`](../laravel-batch) | 同一 EC ドメインのバッチ処理 |
+| [laravel-payment-api](https://github.com/tetsushi-k/laravel-payment-api) | 近代化後の Laravel + React SPA 版 |
+| [laravel-batch](https://github.com/tetsushi-k/laravel-batch) | 同一 EC ドメインのバッチ処理 |
 | [`aidlc-docs/README.md`](aidlc-docs/README.md) | AI-DLC 設計判断の証跡 |
 | [`docs/CLOUD_AGENTS_SETUP.md`](docs/CLOUD_AGENTS_SETUP.md) | Cloud Agents 設定手順 |
 
